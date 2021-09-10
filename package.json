@@ -1,7 +1,7 @@
 {
   "name": "jest-heap-graph",
   "description": "plot jest tests heap usage graph",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "chauchakching",
   "bin": {
     "jest-heap-graph": "./bin/run"
