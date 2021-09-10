@@ -8,14 +8,14 @@ const heapSizeRegex = /(\d*) MB heap size\)/;
 
 type Props = {
   testCommand: string;
-  graphHeight?: number;
-  graphWidth?: number;
+  graphHeight: number;
+  graphWidth: number;
 };
 
 export const RunAndPlot = ({
   testCommand,
-  graphHeight = 10,
-  graphWidth = 90,
+  graphHeight,
+  graphWidth,
 }: Props) => {
   const [records, setRecords] = React.useState<number[]>([]);
   const [stdout, setStdout] = React.useState<string[]>([]);

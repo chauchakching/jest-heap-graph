@@ -10,6 +10,17 @@ class JestHeapGraph extends Command {
     // add --version flag to show CLI version
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),
+    width: flags.integer({
+      char: 'w',
+      default: 90,
+      name: 'width',
+      description: 'max width of the graph',
+    }),
+    height: flags.integer({
+      default: 10,
+      name: 'height',
+      description: 'height of the graph',
+    }),
   };
 
   static args = [
@@ -23,14 +34,20 @@ class JestHeapGraph extends Command {
   ];
 
   async run() {
-    const {args} = this.parse(JestHeapGraph);
+    const {args, flags} = this.parse(JestHeapGraph);
     if (!args.testCommand) {
       console.error('missing test command');
       return;
     }
 
-    console.log(`running command "${args.testCommand}"...`)
-    render(React.createElement(RunAndPlot, {testCommand: args.testCommand}));
+    console.log(`running command "${args.testCommand}"...`);
+    render(
+      React.createElement(RunAndPlot, {
+        testCommand: args.testCommand,
+        graphWidth: flags.width,
+        graphHeight: flags.height,
+      })
+    );
   }
 }
 

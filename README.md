@@ -22,6 +22,9 @@ Put your command that run jest tests as the first argument.
 # or use npx to run it directly
 > npx jest-heap-graph "yarn jest --logHeapUsage"
 
+# check CLI usage
+> jest-heap-graph -h
+
 # run the globally installed cli
 > jest-heap-graph "yarn jest --logHeapUsage"
 PASS src/test/dummy-113..test.js (1929 MB heap size)
