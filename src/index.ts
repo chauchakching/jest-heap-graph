@@ -1,29 +1,37 @@
-import {Command, flags} from '@oclif/command'
+import {Command, flags} from '@oclif/command';
+import {render} from 'ink';
+import React = require('react');
+import {RunAndPlot} from './RunAndPlot';
 
 class JestHeapGraph extends Command {
-  static description = 'describe the command here'
+  static description = 'plot jest test heap usage graph';
 
   static flags = {
     // add --version flag to show CLI version
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),
-    // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
-  }
+  };
 
-  static args = [{name: 'file'}]
+  static args = [
+    {
+      name: 'testCommand',
+      required: true,
+      description:
+        "Your command to run jest tests. Don't forget to add flag `--logHeapUsage`.",
+      default: 'yarn jest --logHeapUsage',
+    },
+  ];
 
   async run() {
-    const {args, flags} = this.parse(JestHeapGraph)
-
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    const {args} = this.parse(JestHeapGraph);
+    if (!args.testCommand) {
+      console.error('missing test command');
+      return;
     }
+
+    console.log(`running command "${args.testCommand}"...`)
+    render(React.createElement(RunAndPlot, {testCommand: args.testCommand}));
   }
 }
 
-export = JestHeapGraph
+export = JestHeapGraph;

@@ -1,12 +1,16 @@
 {
+  "plugins": ["jest"],
   "extends": [
     "oclif",
-    "oclif-typescript"
+    "oclif-typescript",
+    "plugin:jest/recommended",
+    "plugin:react/recommended"
   ],
   "rules": {
     "semi": "off",
     "no-console": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/no-use-before-define": "off",
+    "unicorn/filename-case": "off"
   }
 }
